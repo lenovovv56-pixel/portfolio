@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبد الرحمن | مطور واجهات ومواقع إلكترونية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0B132B;
+            --bg-card: #1C2541;
+            --accent: #FF6B35;
+            --accent-hover: #e85a26;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html[dir="ltr"] body {
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 19, 43, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-btn {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 5% 4rem;
+            background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.14), transparent 45%),
+                        radial-gradient(circle at bottom left, rgba(28, 37, 65, 0.85), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 780px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent);
+            padding: 0.45rem 1.1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2.2rem;
+            max-width: 640px;
+            margin-inline: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s, background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Sections General */
+        section {
+            padding: 4.5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+            border-color: rgba(255, 107, 53, 0.45);
+        }
+
+        .project-preview {
+            height: 185px;
+            background: linear-gradient(135deg, #16223f 0%, #24345c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .project-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(11, 19, 43, 0.88);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        html[dir="ltr"] .project-tag {
+            left: auto;
+            right: 12px;
+        }
+
+        .project-title-banner {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .project-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-body h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .project-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack span {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            padding: 0.25rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .project-links a {
+            flex: 1;
+            text-align: center;
+            padding: 0.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: 0.3s;
+        }
+
+        .link-live {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .link-live:hover {
+            background: var(--accent-hover);
+        }
+
+        .link-code {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+        }
+
+        .link-code:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 1.6rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: linear-gradient(135deg, var(--bg-card), #131b33);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <a href="#" class="logo">عبد <span>الرحمن</span></a>
+        <div class="nav-actions">
+            <ul class="nav-links">
+                <li><a href="#projects" data-ar="أبرز أعمالي" data-en="Projects">أبرز أعمالي</a></li>
+                <li><a href="#skills" data-ar="المهارات" data-en="Skills">المهارات</a></li>
+                <li><a href="#contact" data-ar="تواصل معي" data-en="Contact">تواصل معي</a></li>
+            </ul>
+            <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">English</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge" data-ar="متاح للعمل عن بُعد والتعاون مع الشركات في الإمارات والكويت" data-en="Available for Remote Work & Agency Partnerships">
+                متاح للعمل عن بُعد والتعاون مع الشركات في الإمارات والكويت
+            </div>
+            <h1 data-ar="تصميم وتطوير <span>المتاجر والمواقع الإلكترونية</span> باحترافية وسرعة" 
+                data-en="Building Fast, Modern & Responsive <span>Web Interfaces</span>">
+                تصميم وتطوير <span>المتاجر والمواقع الإلكترونية</span> باحترافية وسرعة
+            </h1>
+            <p data-ar="مطور واجهات أمامية (Front-End) متخصص في بناء المتاجر الإلكترونية، المواقع الطبية والخدمية، وتطبيقات الويب التفاعلية المتوافقة مع جميع الهواتف."
+               data-en="Front-End Web Developer specializing in e-commerce storefronts, medical/service websites, and interactive web applications optimized for mobile devices.">
+                مطور واجهات أمامية (Front-End) متخصص في بناء المتاجر الإلكترونية، المواقع الطبية والخدمية، وتطبيقات الويب التفاعلية المتوافقة مع جميع الهواتف.
+            </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn-primary" data-ar="شاهد أعمالي المنشورة" data-en="View Live Projects">شاهد أعمالي المنشورة</a>
+                <a href="https://wa.me/963982657714" target="_blank" class="btn-secondary" data-ar="تواصل عبر واتساب" data-en="Chat on WhatsApp">تواصل عبر واتساب</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <h2 data-ar="أبرز 3 مشاريع منشورة" data-en="Featured Live Projects">أبرز 3 مشاريع منشورة</h2>
+            <p data-ar="نماذج حقيقية من أعمالي متاحة للمعاينة المباشرة على الإنترنت." 
+               data-en="Real, deployed web projects available for immediate live preview.">
+                نماذج حقيقية من أعمالي متاحة للمعاينة المباشرة على الإنترنت.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: White House Store -->
+            <div class="project-card">
+                <div class="project-preview">
+                    <span class="project-tag" data-ar="متجر إلكتروني" data-en="E-Commerce">متجر إلكتروني</span>
+                    <div class="project-title-banner">🧀 البيت الأبيض</div>
+                </div>
+                <div class="project-body">
+                    <div>
+                        <h3 data-ar="متجر البيت الأبيض للأجبان والألبان" data-en="White House Dairy E-Store">متجر البيت الأبيض للأجبان والألبان</h3>
+                        <p data-ar="متجر إلكتروني تجاري متكامل لعرض المنتجات الغذائية والألبان بتصميم عصري سريع، مع سهولة التصفح والطلب المباشر."
+                           data-en="A complete commercial storefront showcasing dairy and food products with a modern, fast layout and direct ordering flow.">
+                            متجر إلكتروني تجاري متكامل لعرض المنتجات الغذائية والألبان بتصميم عصري سريع، مع سهولة التصفح والطلب المباشر.
+                        </p>
+                        <div class="tech-stack">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Storefront</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://lenovovv56-pixel.github.io/-/" target="_blank" class="link-live" data-ar="زيارة المتجر" data-en="Live Store">زيارة المتجر</a>
+                        <a href="https://github.com/lenovovv56-pixel" target="_blank" class="link-code" data-ar="حساب GitHub" data-en="GitHub">حساب GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Tajweed App -->
+            <div class="project-card">
+                <div class="project-preview">
+                    <span class="project-tag" data-ar="تطبيق تفاعلي" data-en="Web App">تطبيق تفاعلي</span>
+                    <div class="project-title-banner">📖 أحكام التجويد</div>
+                </div>
+                <div class="project-body">
+                    <div>
+                        <h3 data-ar="تطبيق أحكام التجويد التفاعلي" data-en="Interactive Tajweed Web App">تطبيق أحكام التجويد التفاعلي</h3>
+                        <p data-ar="برنامج تعليمي تفاعلي مبني بتقنيات الويب لتسهيل تعلم أحكام التجويد، يتميز بواجهة مستخدم منظمة وتفاعل برمجي سلس."
+                           data-en="An interactive educational web application designed to simplify learning Tajweed rules with structured navigation and smooth UI.">
+                            برنامج تعليمي تفاعلي مبني بتقنيات الويب لتسهيل تعلم أحكام التجويد، يتميز بواجهة مستخدم منظمة وتفاعل برمجي سلس.
+                        </p>
+                        <div class="tech-stack">
+                            <span>JavaScript</span>
+                            <span>Interactive UI</span>
+                            <span>Responsive</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://lenovovv56-pixel.github.io/tajweed-app/" target="_blank" class="link-live" data-ar="تشغيل التطبيق" data-en="Launch App">تشغيل التطبيق</a>
+                        <a href="https://github.com/lenovovv56-pixel" target="_blank" class="link-code" data-ar="حساب GitHub" data-en="GitHub">حساب GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Dental Clinic -->
+            <div class="project-card">
+                <div class="project-preview">
+                    <span class="project-tag" data-ar="موقع طبي" data-en="Medical Site">موقع طبي</span>
+                    <div class="project-title-banner">🦷 العيادة السنية</div>
+                </div>
+                <div class="project-body">
+                    <div>
+                        <h3 data-ar="العيادة السنية التخصصية للاعتماد" data-en="Al-Etimad Specialized Dental Clinic">العيادة السنية التخصصية للاعتماد</h3>
+                        <p data-ar="موقع تعريفي وخدمي احترافي لعيادة أسنان تخصصية، يعرض الخدمات الطبية ومعلومات التواصل بأسلوب موثوق وجذاب."
+                           data-en="A professional service website for a specialized dental clinic, presenting medical services and patient contact options cleanly.">
+                            موقع تعريفي وخدمي احترافي لعيادة أسنان تخصصية، يعرض الخدمات الطبية ومعلومات التواصل بأسلوب موثوق وجذاب.
+                        </p>
+                        <div class="tech-stack">
+                            <span>HTML5</span>
+                            <span>CSS Grid</span>
+                            <span>Medical UI</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://lenovovv56-pixel.github.io/-.-/" target="_blank" class="link-live" data-ar="معاينة الموقع" data-en="Live Site">معاينة الموقع</a>
+                        <a href="https://github.com/lenovovv56-pixel" target="_blank" class="link-code" data-ar="حساب GitHub" data-en="GitHub">حساب GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <h2 data-ar="ما الذي أقدمه للشركات والعملاء؟" data-en="What I Deliver">ما الذي أقدمه للشركات والعملاء؟</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3 data-ar="واجهات متاجر إلكترونية" data-en="E-Commerce Storefronts">واجهات متاجر إلكترونية</h3>
+                <p data-ar="تصميم متاجر سريعة لعرض المنتجات وربطها مباشرة بالطلب عبر واتساب." 
+                   data-en="Fast product catalogs connected directly to WhatsApp ordering workflows.">
+                    تصميم متاجر سريعة لعرض المنتجات وربطها مباشرة بالطلب عبر واتساب.
+                </p>
+            </div>
+            <div class="skill-card">
+                <h3 data-ar="توافق كامل مع الجوال" data-en="100% Mobile Responsive">توافق كامل مع الجوال</h3>
+                <p data-ar="جميع المواقع تعمل بدقة وسلاسة تامة على شاشات الهواتف الذكية والأجهزة اللوحية." 
+                   data-en="Every website is built mobile-first to look sharp on all smartphones and tablets.">
+                    جميع المواقع تعمل بدقة وسلاسة تامة على شاشات الهواتف الذكية والأجهزة اللوحية.
+                </p>
+            </div>
+            <div class="skill-card">
+                <h3 data-ar="تطبيقات وأدوات تفاعلية" data-en="Interactive Web Tools">تطبيقات وأدوات تفاعلية</h3>
+                <p data-ar="برمجة تطبيقات تعليمية وأدوات حسابية تعمل مباشرة في المتصفح بدون تعقيد." 
+                   data-en="Building browser-based educational apps and calculation tools with clean JavaScript.">
+                    برمجة تطبيقات تعليمية وأدوات حسابية تعمل مباشرة في المتصفح بدون تعقيد.
+                </p>
+            </div>
+            <div class="skill-card">
+                <h3 data-ar="نشر واستضافة سريعة" data-en="Fast Cloud Deployment">نشر واستضافة سريعة</h3>
+                <p data-ar="رفع المواقع وتجهيزها للعمل الفوري على الإنترنت عبر GitHub Pages." 
+                   data-en="Deploying production-ready static websites rapidly via GitHub Pages.">
+                    رفع المواقع وتجهيزها للعمل الفوري على الإنترنت عبر GitHub Pages.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-box">
+            <h2 data-ar="هل تبحث عن مطور واجهات لمشروعك القادم؟" 
+                data-en="Need a Reliable Front-End Developer for Your Next Project?">
+                هل تبحث عن مطور واجهات لمشروعك القادم؟
+            </h2>
+            <p data-ar="يسعدني التعاون مع الشركات، الوكالات التسويقية، وأصحاب المتاجر في الإمارات والكويت لتنفيذ مواقعهم باحترافية."
+               data-en="Ready to collaborate with businesses and digital agencies in the UAE and Kuwait on modern web interfaces.">
+                يسعدني التعاون مع الشركات، الوكالات التسويقية، وأصحاب المتاجر في الإمارات والكويت لتنفيذ مواقعهم باحترافية.
+            </p>
+            <div class="contact-methods">
+                <a href="https://wa.me/963982657714" target="_blank" class="btn-primary" data-ar="تواصل واتساب مباشر" data-en="WhatsApp Direct">تواصل واتساب مباشر</a>
+                <a href="mailto:lenovovv56@gmail.com" class="btn-secondary" data-ar="أرسل بريداً إلكترونياً" data-en="Send Email">أرسل بريداً إلكترونياً</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-ar="© 2026 عبد الرحمن. جميع الحقوق محفوظة." data-en="© 2026 Abdel Rahman. All Rights Reserved.">© 2026 عبد الرحمن. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- Bilingual Toggle Script -->
+    <script>
+        let currentLang = 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const htmlTag = document.documentElement;
+            const langBtn = document.getElementById('langToggle');
+
+            htmlTag.setAttribute('lang', currentLang);
+            htmlTag.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            langBtn.textContent = currentLang === 'ar' ? 'English' : 'عربي';
+
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+    </script>
+</body>
+</html>
